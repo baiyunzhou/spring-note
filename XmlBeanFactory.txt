@@ -1,0 +1,13 @@
+XmlBeanFactory->DefaultListableFactory->AbstractAotuwiredCapableBeanFactory->AbstractBeanFactory
+
+XmlBeanFactory
+	XmlBeanDefinitionReader->AbstractBeanDefinitionReader->EnvironmentCapable, BeanDefinitionReader
+		DelegatingEntityResolver：读取META-INF/spring.schemas，通过systemId直接获取本地资源。publicId间接指向资源，systemId直接指向一个资源。dtd有publicId和systemId，xsd只有systemId。
+		SimpleSaxErrorHandler：
+		XmlValidationModeDetector:获取验证模式，是xsd验证还是dtd验证。实际就是检测有没有DOCTYPE
+		DefaultDocumentLoader->DocumentLoader:加载解析验证xml配置文件，生成Document
+		XmlReaderContext->ReaderContext:封装XMl读取bean的上下文对象
+		DefaultNamespaceHandlerResolver->NamespaceHandlerResolver:读取META-INF/spring.handlers，获取名称空间对应的解析器
+		DefaultBeanDefinitionDocumentReader：
+		BeanDefinitionParserDelegate:实际解析bean元数据
+		DocumentDefaultsDefinition：beans标签属性封装bean
